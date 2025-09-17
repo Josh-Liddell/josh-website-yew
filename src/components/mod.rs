@@ -1,5 +1,7 @@
 mod comingsoon;
-//mod navbar;
+mod home;
+mod navbar;
 
 pub use comingsoon::*;
-//pub use navbar::*;
+pub use home::*;
+pub use navbar::*;

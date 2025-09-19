@@ -1,30 +1,48 @@
-// === Main Colors ===
+// ====== Colors ======
 $color-bg:      #0f1519;
 $color-bg2:     #141b1f;
 $color-text:    #ffffff;
 $footer-bg:     #1c262d;
 
-// === Gradients ===
+// Gradients
 $pink-blue:       linear-gradient(to right, rgb(212, 0, 255), rgb(0, 98, 255));
 $blue-header:     linear-gradient(to right, rgba(0, 52, 240), rgba(0, 123, 223));
 $card-blue:       linear-gradient(to right, rgba(0, 124, 240, 0.5), rgba(0, 156, 223, 0.5));
 
-// === Buttons ===
+// Buttons
 $button-bg:     #0d6efd;
 $button-h1:     #0b5ed7;
 $button-h2:     #0a58ca;
 
-// === Cards ===
+// Cards
 $card-bg:       #1c262d;
 $card-bdr:      #41596c;
 $card-bdr2:     #547896;
 
 
 
+// ====== ANIMATIONS ======
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
 
+
+
+// ====== MEDIA QUERIES ======
+@media (max-width: 900px) {
+  .small-cards {
+    flex-direction: column;
+  }
+}
+
+
+
+// ====== STYLING ======
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html,
@@ -32,18 +50,108 @@ body {
   background-color: #0f1519;
   color: white;
   font-size: 16px;
+
+  // FIX: Delete
+  font-family: Verdana;
 }
 
 
 
-// === COMPONENTS ===
-
+// ====== COMPONENTS ======
 .home {
   display: flex;
-  justify-content: center;
-  // background-color: pink;
+  flex-direction: column;
+  align-items: center;
+  // background-color: blue;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+
+  .cards-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    //FIX: Change to create that nice effect
+    width: clamp(31.25rem, calc(90vw - 2rem), 75rem);
+    gap: 5rem;
+    // background-color: red;
+  }
+
+  h1 {
+    // animation: blink 1s infinite;
+
+  }
 }
 
+
+// border moving beam of light similar to tron, maybe thats like part of the
+// "building step, a beam of light around all the cards and then they fill in!!!! cool!!"
+.intro-card {
+  display: flex;
+  flex-direction: column;
+
+  // NOTE: EXPERIMENT
+  overflow: hidden;
+  clip-path: polygon(
+    0% 100%,  /* bottom-left */
+    0% 0%,  /* top-left */
+    60% 0%, /* top-right */
+    40% 100%    /* back to bottom-left to close */
+  );
+
+
+  background: $card-blue;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  // It will only be as wide as its content, we want to it fill the width of card section it is in
+  width: 100%;
+  height: 20rem;
+
+  .buttons {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: auto;
+  }
+
+  p {
+    margin-top: 0.5rem;
+  }
+
+}
+
+.small-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  background-color: $card-bg;
+  border: 1px solid $card-bdr;
+  border-radius: 0.5rem;
+
+  padding: 1rem;
+  transition: 0.2s ease;
+  // width: 100%
+  // min-width: 10rem;
+  // flex: 1 1 10rem;
+  flex-grow: 1;
+  flex-shrink: 1;
+
+  &:hover {
+    border: 1px solid $card-bdr2;
+    scale: 1.02;
+  }
+}
+
+.small-cards {
+  display: flex;
+  gap: 1rem;
+  // flex-wrap: wrap;
+
+  width: 100%;
+  // height determined by how much content is in the small cards
+  // height: 7rem;
+  // background-color: pink;
+}
 
 .coming-soon {
   height: 100vh;
@@ -87,7 +195,10 @@ body {
 
   background: $blue-header;
   height: 3rem;
-  
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
   padding-inline-start: clamp(1rem, 5vw, 10rem);
   padding-inline-end: clamp(1rem, 5vw, 10rem);
   border-bottom-left-radius: 1rem;
@@ -118,34 +229,34 @@ body {
 }
 
 
+// ====== BUTTONS ======
+.btn1 {
+    cursor: pointer;
+    outline: 0;
+    color: #fff;
+    background-color: $button-bg;
+    border-color: $button-bg;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    border: 1px solid transparent;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out,
+                background-color 0.15s ease-in-out,
+                border-color 0.15s ease-in-out,
+                box-shadow 0.15s ease-in-out;
 
+}
 
+.btn1:hover {
+    color: #fff;
+    background-color: $button-h1;
+    border-color: $button-h2;
+}
 
-
-
-
-
-
-// NOTES FOR LATER //
-
-//
-// main {
-//   color: #fff6d5;
-//   font-family: sans-serif;
-//   text-align: center;
-// }
-//
-// .logo {
-//   height: 20em;
-// }
-//
-// .heart:after {
-//   content: "❤️";
-//
-//   font-size: 1.75em;
-// }
-//
-// h1 + .subtitle {
-//   display: block;
-//   margin-top: -1em;
-// }
+// RESPONSIVENESS NOTES
+// using clamp is nice
+// ther is some sort of nowrap thing maybe
+// at a certain width make it wrap? idkd idk idk
+// make my name disaeaper at top when shrunk small enough. or maybe set a min window size??

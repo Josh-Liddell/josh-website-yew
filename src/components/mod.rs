@@ -1,7 +1,9 @@
 mod comingsoon;
-mod home;
+mod homecards;
 mod navbar;
+mod pages;
 
 pub use comingsoon::*;
-pub use home::*;
+pub use homecards::*;
 pub use navbar::*;
+pub use pages::*;

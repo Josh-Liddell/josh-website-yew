@@ -21,22 +21,6 @@ $card-bdr2:     #547896;
 
 
 
-// ====== ANIMATIONS ======
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
-
-
-
-// ====== MEDIA QUERIES ======
-@media (max-width: 900px) {
-  .small-cards {
-    flex-direction: column;
-  }
-}
-
-
 
 // ====== STYLING ======
 * {
@@ -49,6 +33,7 @@ html,
 body {
   background-color: #0f1519;
   color: white;
+  // font-size: 13px;
   font-size: 16px;
 
   // FIX: Delete
@@ -63,8 +48,6 @@ body {
   flex-direction: column;
   align-items: center;
   // background-color: blue;
-  margin-top: 5rem;
-  margin-bottom: 5rem;
 
   .cards-section {
     display: flex;
@@ -74,6 +57,8 @@ body {
     width: clamp(31.25rem, calc(90vw - 2rem), 75rem);
     gap: 5rem;
     // background-color: red;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
   }
 
   h1 {
@@ -88,6 +73,12 @@ body {
 .intro-card {
   display: flex;
   flex-direction: column;
+  
+  background: #a8c0ff;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #3f2b96, #a8c0ff);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #3f2b96, #a8c0ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
 
   // NOTE: EXPERIMENT
   overflow: hidden;
@@ -99,7 +90,7 @@ body {
   );
 
 
-  background: $card-blue;
+  // background: $card-blue;
   border-radius: 0.5rem;
   padding: 2rem;
   // It will only be as wide as its content, we want to it fill the width of card section it is in
@@ -134,7 +125,7 @@ body {
   // min-width: 10rem;
   // flex: 1 1 10rem;
   flex-grow: 1;
-  flex-shrink: 1;
+  // flex-shrink: 1;
 
   &:hover {
     border: 1px solid $card-bdr2;
@@ -151,6 +142,104 @@ body {
   // height determined by how much content is in the small cards
   // height: 7rem;
   // background-color: pink;
+}
+
+.big-card1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-grow: 1;
+
+  height: 20rem;
+  // background: linear-gradient(to right, rgba(117, 34, 130), rgba(0, 156, 223));
+  border-radius: 0.5rem;
+
+  background: #4e54c8;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #8f94fb, #4e54c8);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #8f94fb, #4e54c8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.big-card2 {
+  flex-grow: 1;
+
+  height: 20rem;
+  // border-radius: 0.5rem;
+  // overflow: hidden;
+
+  --borderWidth: 3px;
+  // background: #1D1F20;
+  position: relative;
+  z-index: 0;
+  border-radius: var(--borderWidth);
+
+  .inner-card2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: $color-bg;
+    overflow: hidden;
+    position: relative;
+    border-radius: calc(var(--borderWidth));
+
+  }
+}
+
+.big-card2:after {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--borderWidth));
+  left: calc(-1 * var(--borderWidth));
+  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + var(--borderWidth) * 2);
+  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+  border-radius: calc(2 * var(--borderWidth));
+  z-index: -1;
+  animation: animatedgradient 10s ease alternate infinite;
+  background-size: 300% 300%;
+}
+
+@keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.big-cards {
+  display: flex;
+  gap: 3rem;
+  width: 100%;
+}
+
+.project-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  background-color: $card-bg;
+  border: 1px solid $card-bdr;
+  border-radius: 0.5rem;
+
+  flex-grow: 1;
+  height: 15rem;
+  width: clamp(14.9rem, 20vw, 15rem);
+}
+
+.project-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-content: flex-start;
 }
 
 .coming-soon {
@@ -187,6 +276,14 @@ body {
 
 }
 
+.quotes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-bg2;
+  height: 35rem;
+  width: 100%
+}
 
 .navbar {
   display: flex;
@@ -238,6 +335,7 @@ body {
     border-color: $button-bg;
     display: inline-block;
     font-weight: 400;
+    font-size: inherit;
     text-align: center;
     border: 1px solid transparent;
     padding: 0.5rem 1rem;
@@ -254,6 +352,48 @@ body {
     background-color: $button-h1;
     border-color: $button-h2;
 }
+
+// ====== MEDIA QUERIES ======
+@media (max-width: 800px) {
+  .small-cards {
+    flex-direction: column;
+  }
+
+  .navbar {
+    justify-content: center;
+    h3 {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+   .big-cards {
+    flex-direction: column;
+  }
+}
+
+// ====== ANIMATIONS ======
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+// @keyframes animatedgradient {
+//   0% {
+//     background-position: 0% 50%;
+//   }
+//   50% {
+//     background-position: 100% 50%;
+//   }
+//   100% {
+//     background-position: 0% 50%;
+//   }
+// }
+
+
+
+
 
 // RESPONSIVENESS NOTES
 // using clamp is nice

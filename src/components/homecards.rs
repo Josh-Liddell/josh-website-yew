@@ -32,13 +32,23 @@ fn smallcard() -> Html {
     )
 }
 
-#[function_component(BigCard)]
-fn bigcard() -> Html {
-    // use like a enum & match for the type maybe?
+#[function_component(BigCard1)]
+fn bigcard1() -> Html {
     html!(
         <div class="big-card1">
-            <p>{ "Big Item" }</p>
+            <p>{ "Big Item 1" }</p>
         </div>
+    )
+}
+
+#[function_component(BigCard2)]
+fn bigcard2() -> Html {
+    html!(
+        <a class="big-card2">
+            <div class="inner-card2">
+                <p>{ "Big Item 2" }</p>
+            </div>
+        </a>
     )
 }
 
@@ -62,8 +72,50 @@ pub fn bigcards() -> Html {
 
     html!(
         <div class="big-cards">
-            <BigCard/>
-            <BigCard/>
+            <BigCard1/>
+            <BigCard2/>
+        </div>
+    )
+}
+
+#[function_component(ProjectCard)]
+fn projectcard() -> Html {
+    html!(
+        <div class="project-card">
+            <p>{ "Item" }</p>
+        </div>
+    )
+}
+
+#[function_component(ProjectCards)]
+pub fn projectcards() -> Html {
+    // Later for each item in the small card data, map it to a smallcard (pass in arguments)
+
+    html!(
+        <div class="project-cards">
+            <ProjectCard/>
+            <ProjectCard/>
+            <ProjectCard/>
+            <ProjectCard/>
+            <ProjectCard/>
+            <ProjectCard/>
+            <ProjectCard/>
+            <ProjectCard/>
+            <ProjectCard/>
+            <ProjectCard/>
+            <ProjectCard/>
+            <ProjectCard/>
+        </div>
+    )
+}
+
+#[function_component(Quotes)]
+pub fn quotes() -> Html {
+    // Later for each item in the small card data, map it to a smallcard (pass in arguments)
+
+    html!(
+        <div class="quotes">
+            <p>{ "Item" }</p>
         </div>
     )
 }

@@ -9,10 +9,10 @@ pub fn home() -> Html {
             <div class="cards-section">
                 <IntroCard/>
                 <SmallCards/>
-                //<BigCards/>
-                //<ProjectCards/>
+                <BigCards/>
+                <ProjectCards/>
             </div>
-            //<Quotes/>
+            <Quotes/>
         </main>
     )
 }
